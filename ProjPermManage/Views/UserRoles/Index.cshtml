@@ -1,0 +1,58 @@
+@model ProjPermManage.Models.ManagerUserRolesViewModel
+
+@{ ViewData["Title"] = "Index"; }
+
+<h3>Manage role for @Model.UserId</h3>
+
+<br />
+<div class="card">
+    <div class="card-body table-responsive" id="viewAll">
+        <form method="post" asp-controller="UserRoles" asp-action="Update" asp-route-id="@Model.UserId" class="d-inline">
+            <input asp-for="@Model.UserId" type="hidden" />
+            <table class="table table table-striped" id="userRolesTable">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.UserRoles.Count(); i++)
+                    {
+        <tr>
+            <td>
+                <input asp-for="@Model.UserRoles[i].RoleName" type="hidden" />
+                @Model.UserRoles[i].RoleName
+            </td>
+            <td>
+                <div class="form-check m-1">
+                    <input asp-for="@Model.UserRoles[i].Selected" class="form-check-input" />
+                </div>
+            </td>
+        </tr>}
+                </tbody>
+            </table>
+            <div class="col-sm-12" style="padding:20px 20px 0px 0px">
+                <button type="submit" id="save" class="btn bg-primary">
+                    <i class="fa fa-check"></i>
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

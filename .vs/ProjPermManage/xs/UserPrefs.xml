@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{6B156C3F-058C-4A8B-A21A-FEC4D9A53D72}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProjPermManage/Views/User/Index.cshtml">
+    <Files>
+      <File FileName="ProjPermManage/Views/User/Index.cshtml" Line="60" Column="135" />
+      <File FileName="ProjPermManage/Controllers/UserController.cs" />
+      <File FileName="ProjPermManage/Models/EditUserViewModel.cs" />
+      <File FileName="ProjPermManage/Seeds/DefaultUsers.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ProjPermManage" expanded="True">
+            <Node name="ProjPermManage" expanded="True" selected="True">
+              <Node name="Areas" expanded="True">
+                <Node name="Identity" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Seeds" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True" />
+                <Node name="User" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.ProjPermManage PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
