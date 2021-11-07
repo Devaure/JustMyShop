@@ -34,6 +34,7 @@
             <a asp-action="Index" class="btn btn-sm btn-dark">Cancel</a>
         </div>
     </div>
+
     <div class="card">
         <div class="card-header"><h3 class="text-left">User Role</h3></div>
         <div class="card-body">
@@ -41,11 +42,12 @@
             {
                 foreach (var role in Model.Roles)
                 {
-<h5 class="card-title">@role</h5> }
-}
-else
-{
-<h5 class="card-title">None for the moment</h5>}
+                    <h5 class="card-title text-left">@role</h5> }
+                }
+            else
+            {
+                <h5 class="card-title text-left">None for the moment</h5>
+            }
         </div>
         <div class="card-footer">
             <a asp-controller="UserRoles" asp-action="Index" asp-route-userId="@Model.Id" style="width:auto" class="btn btn-info float-left">
@@ -58,12 +60,14 @@ else
         <div class="card-body">
             @if (Model.Roles.Any())
             {
-@foreach (var claims in Model.Claims)
-{
-<h5 class="card-title text-left">@claims</h5>} }
-else
-{
-<h5 class="card-title">None for the moment</h5>}
+                @foreach (var claim in Model.Claims)
+                {
+                    <h5 class="card-title text-left">@claim</h5>}
+                }
+            else
+            {
+                <h5 class="card-title text-left">None for the moment</h5>
+            }
         </div>
         <div class="card-footer">
             <a href="#" style="width:auto" class="btn btn-info float-left">

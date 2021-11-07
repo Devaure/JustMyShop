@@ -16,7 +16,7 @@ namespace ProjPermManage.Seeds
             //Seed Default User
             var defaultUser = new IdentityUser
             {
-                UserName = "default@gmail.com",
+                UserName = "User",
                 Email = "default@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
@@ -45,7 +45,7 @@ namespace ProjPermManage.Seeds
             //Seed Default User
             var defaultUser = new IdentityUser
             {
-                UserName = "superadmin@gmail.com",
+                UserName = "superAdmin",
                 Email = "superadmin@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true

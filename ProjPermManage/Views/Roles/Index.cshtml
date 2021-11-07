@@ -26,56 +26,56 @@
     <tbody>
         @foreach (var role in Model)
         {
+            <div class="row">
+                <div id="id01" class="col-md-6 col-sm-12 modal rounded shadow p-3 mb-5">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Information Delete">&times;</span>
+                    <form class="modal-content" method="post" asp-action="DeleteRole" asp-controller="roles" asp-route-Id="@role.Id">
+                        <h1 class="text-center h4 mt-3">Delete Role</h1>
+                        <p>Are you sure you want to delete this role?</p>
 
-<div class="row">
-    <div id="id01" class="col-md-6 col-sm-12 modal rounded shadow p-3 mb-5">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Information Delete">&times;</span>
-        <form class="modal-content" method="post" asp-action="DeleteRole" asp-controller="roles" asp-route-Id="@role.Id">
-            <h1 class="text-center h4 mt-3">Delete Role</h1>
-            <p>Are you sure you want to delete this role?</p>
-
-            <div class="clearfix row">
-                <button asp-action="Index" asp-controller="roles" class="btn btn-sm btn-dark form-control mr-2 ml-2 mb-2">Cancel</button>
-                <button type="submit" class="btn btn-sm btn-danger form-control mr-2 ml-2">Delete</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-                <tr>
-                    <td>
-                        @role.Name
-                    </td>
-                    <td>
-                        @role.Id
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </button>
-                            <div class="dropdown-menu shadow animated--grow-in">
-                                <a class="dropdown-item" @*asp-action="Update" asp-controller="Permission"*@>
-                                    <i class="fas fa-pencil-alt"></i>
-                                    Edit
-                                </a>
-
-
-                                <a class="dropdown-item" onclick="document.getElementById('id01').style.display='block'">
-                                    <i class="fas fa-trash-alt"></i>
-                                    Delete
-                                </a>
-
-                                @if (role.Name != "SuperAdmin")
-                                {
-                <a style="margin-right:10px" asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id" class="dropdown-item">
-                    <i class="fas fa-wrench"></i>
-                    Manage Permissions
-                </a>}
-                            </div>
+                        <div class="clearfix row">
+                            <button asp-action="Index" asp-controller="roles" class="btn btn-sm btn-dark form-control mr-2 ml-2 mb-2">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-danger form-control mr-2 ml-2">Delete</button>
                         </div>
-                    </td>
-                </tr>}
+                    </form>
+                </div>
+            </div>
+            <tr>
+                <td>
+                    @role.Name
+                </td>
+                <td>
+                    @role.Id
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+
+                            <a class="dropdown-item" @*asp-action="Update" asp-controller="Permission"*@>
+                                <i class="fas fa-pencil-alt"></i>
+                                Edit
+                            </a>
+                            <a class="dropdown-item" onclick="document.getElementById('id01').style.display='block'">
+                                <i class="fas fa-trash-alt"></i>
+                                Delete
+                            </a>
+
+                            @if (role.Name != "SuperAdmin")
+                            {
+                                <a style="margin-right:10px" asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id" class="dropdown-item">
+                                    <i class="fas fa-wrench"></i>
+                                    Manage Permissions
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

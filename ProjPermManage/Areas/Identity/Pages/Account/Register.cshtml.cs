@@ -45,6 +45,11 @@ namespace ProjPermManage.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [StringLength(20, ErrorMessage = "The username must be between 3 and 20 characters long.", MinimumLength = 3)]
+            [Required]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -74,7 +79,7 @@ namespace ProjPermManage.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
