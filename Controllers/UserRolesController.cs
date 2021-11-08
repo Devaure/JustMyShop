@@ -9,7 +9,7 @@ using ProjPermManage.Models;
 
 namespace ProjPermManage.Controllers
 {
-    //[Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UserRolesController : Controller
     {
         private readonly SignInManager<IdentityUser> signInManager;
@@ -23,10 +23,11 @@ namespace ProjPermManage.Controllers
             this.roleManager = roleManager;
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> Index(string userId)
         {
             var viewModel = new List<UserRolesViewModel>();
+
             var user = await userManager.FindByIdAsync(userId);
 
             foreach (var role in roleManager.Roles)
@@ -34,6 +35,7 @@ namespace ProjPermManage.Controllers
                 var userRolesViewModel = new UserRolesViewModel
                 {
                     RoleName = role.Name,
+                    RoleId = role.Id
                 };
 
                 if (await userManager.IsInRoleAsync(user, role.Name))
@@ -44,6 +46,7 @@ namespace ProjPermManage.Controllers
                 {
                     userRolesViewModel.Selected = false;
                 }
+
                 viewModel.Add(userRolesViewModel);
             }
 
@@ -58,15 +61,33 @@ namespace ProjPermManage.Controllers
 
         /**
          * je recupère l'utilisateur ses roles et je les supprimes 
+         * si le user n'existe pas j'affiche un message d'erreur
          * ensuite je lui ajoute ses nouveaux roles qui ont été sélectionnés
          */
         public async Task<IActionResult> Update(string userId, ManagerUserRolesViewModel model)
         {
             var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id= {user.Id} cannot be found";
+                return View("Error");
+            }
             var roles = await userManager.GetRolesAsync(user);
             var result = await userManager.RemoveFromRolesAsync(user, roles);
 
+            if (!result.Succeeded)
+            {
+                ViewBag.ErrorMessage = $"User with Id= {user.Id} cannot be found";
+                return View(model);
+            }
+
             result = await userManager.AddToRolesAsync(user, model.UserRoles.Where(x => x.Selected).Select(y => y.RoleName));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot add selected role to user");
+                return View(model);
+            }
             var currentUser = await userManager.GetUserAsync(User);
             await signInManager.RefreshSignInAsync(currentUser);
             await Seeds.DefaultUsers.SeedSuperAdminAsync(userManager, roleManager);

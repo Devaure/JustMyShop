@@ -12,7 +12,7 @@ using ProjPermManage.Seeds;
 
 namespace ProjPermManage.Controllers
 {
-    //[Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class PermissionController : Controller
     {
 
