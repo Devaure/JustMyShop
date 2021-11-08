@@ -1,1 +1,1 @@
-# JustShop
+# JustMyShop
