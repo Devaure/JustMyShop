@@ -10,7 +10,7 @@ using ProjPermManage.Models;
 
 namespace ProjPermManage.Controllers
 {
-    //[Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -83,6 +83,39 @@ namespace ProjPermManage.Controllers
                 Roles = userRoles.ToList()
             };
 
+            return View(model);
+        }
+
+        [HttpPost]
+        /**
+         * Mis à jour des information de l'utilisateur 
+         */
+        public async Task<IActionResult> UpdateUser(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = "user with id connot found";
+                return View("NotFound");
+            }
+            else
+            {
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+           
             return View(model);
         }
     }
