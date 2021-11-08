@@ -1,6 +1,6 @@
 @model ProjPermManage.Models.ManagerUserRolesViewModel
 
-@{ ViewData["Title"] = "Index"; }
+@{ ViewData["Title"] = "Manage Roles"; }
 
 <h3>Manage role for @Model.UserId</h3>
 
@@ -8,7 +8,9 @@
 <div class="card">
     <div class="card-body table-responsive" id="viewAll">
         <form method="post" asp-controller="UserRoles" asp-action="Update" asp-route-id="@Model.UserId" class="d-inline">
+
             <input asp-for="@Model.UserId" type="hidden" />
+
             <table class="table table table-striped" id="userRolesTable">
                 <thead>
                     <tr>
@@ -31,14 +33,19 @@
                             </td>
                         </tr>
                     }
+                    <div asp-validation-summary="All" class="text-danger"></div>
                 </tbody>
             </table>
-                <div class="col-sm-12" style="padding:20px 20px 0px 0px">
-                    <button type="submit" id="save" class="btn bg-primary">
-                        <i class="fa fa-check"></i>
-                        Save
-                    </button>
-                </div>
+            <div class="col-sm-12" style="padding:20px 20px 0px 0px">
+                <button type="submit" id="save" class="btn bg-primary text-white">
+                    <i class="fa fa-check"></i>
+                    Save
+                </button>
+                <button asp-action="Index" asp-controller="User" id="save" class="btn btn-dark text-white">
+                    <i class="fa fa-times-circle"></i>
+                    Cancel
+                </button>
+            </div>
         </form>
     </div>
 </div>
