@@ -10,7 +10,7 @@ using ProjPermManage.Models;
 
 namespace ProjPermManage.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
