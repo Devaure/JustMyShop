@@ -9,7 +9,7 @@ using ProjPermManage.Models;
 
 namespace ProjPermManage.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public class UserRolesController : Controller
     {
         private readonly SignInManager<IdentityUser> signInManager;
@@ -56,6 +56,10 @@ namespace ProjPermManage.Controllers
             return View(model);
         }
 
+        /**
+         * je recupère l'utilisateur ses roles et je les supprimes 
+         * ensuite je lui ajoute ses nouveaux roles qui ont été sélectionnés
+         */
         public async Task<IActionResult> Update(string userId, ManagerUserRolesViewModel model)
         {
             var user = await userManager.FindByIdAsync(userId);
